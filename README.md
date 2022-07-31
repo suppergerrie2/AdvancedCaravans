@@ -12,7 +12,7 @@ Any chest placed in the source or target's range will be taken from or deposited
 A visualisation of the range is shown in the image below, any block with inventory placed on the red blocks will be in range.
 ![](images/range.png)
 
-### Advanced features
+## Advanced features
 
 Llamas will only follow llamas with the same colour carpet as the leader. 
 A leader without carpet is considered to be a leader of all colours.
