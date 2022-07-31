@@ -56,7 +56,7 @@ public class GoToTarget extends Behavior<CaravanLeaderEntity> {
         if(!entity.getBrain().hasMemoryValue(targetMemory)) return false;
 
         @SuppressWarnings("OptionalGetWithoutIsPresent") GlobalPos targetPos = entity.getBrain().getMemory(targetMemory).get();
-        return !targetPos.pos().closerToCenterThan(entity.position(), 5) ;
+        return !targetPos.pos().closerToCenterThan(entity.position(), 5) && !entity.isSleeping();
     }
 
     @Override

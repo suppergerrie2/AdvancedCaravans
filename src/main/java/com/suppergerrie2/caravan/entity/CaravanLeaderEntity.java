@@ -5,6 +5,7 @@ import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Dynamic;
 import com.suppergerrie2.caravan.CaravanMod;
 import com.suppergerrie2.caravan.entity.ai.CaravanLeaderAI;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.animal.horse.Llama;
@@ -88,6 +90,8 @@ public class CaravanLeaderEntity extends AbstractVillager {
 
     public CaravanLeaderEntity(EntityType<CaravanLeaderEntity> entityType, Level level) {
         super(entityType, level);
+        ((GroundPathNavigation) this.getNavigation()).setCanOpenDoors(true);
+        this.getNavigation().setCanFloat(true);
     }
 
     public static @NotNull AttributeSupplier.Builder createAttributes() {
@@ -219,7 +223,7 @@ public class CaravanLeaderEntity extends AbstractVillager {
     /**
      * Create an ItemStack of the given item with the UUID of this entity in the BlockEntityTag.CaravanLeadId tag.
      *
-     * @param item The item type
+     * @param item  The item type
      * @param count Count of the item stack
      * @return The item stack
      */
@@ -234,7 +238,7 @@ public class CaravanLeaderEntity extends AbstractVillager {
 
     @Override
     protected void updateTrades() {
-        if(offers == null) {
+        if (offers == null) {
             this.offers = new MerchantOffers();
         }
 
@@ -247,6 +251,13 @@ public class CaravanLeaderEntity extends AbstractVillager {
         if (!isClientSide() && offer.shouldRewardExp()) {
             this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY() + 0.5D, this.getZ(), random.nextInt(1, 3)));
         }
+    }
+
+    public void startSleeping(@NotNull BlockPos pos) {
+        super.startSleeping(pos);
+        this.brain.setMemory(MemoryModuleType.LAST_SLEPT, this.level.getGameTime());
+        this.brain.eraseMemory(MemoryModuleType.WALK_TARGET);
+        this.brain.eraseMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
     }
 
     @Override

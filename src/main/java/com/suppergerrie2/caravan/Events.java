@@ -1,15 +1,16 @@
 package com.suppergerrie2.caravan;
 
+import com.suppergerrie2.caravan.entity.CaravanLeaderEntity;
 import com.suppergerrie2.caravan.entity.ai.CustomLlamaFollowCaravanGoal;
 import net.minecraft.world.entity.ai.goal.LlamaFollowCaravanGoal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
+import net.minecraftforge.event.entity.player.SleepingLocationCheckEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Events {
 
@@ -32,6 +33,17 @@ public class Events {
             if (llama.inCaravan()) {
                 llama.leaveCaravan();
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void sleepingLocationCheck(SleepingLocationCheckEvent event) {
+        if(!(event.getEntity() instanceof CaravanLeaderEntity caravanLeader)) {
+            return;
+        }
+
+        if(event.getSleepingLocation().distSqr(caravanLeader.blockPosition()) < 16) {
+            event.setResult(SleepingLocationCheckEvent.Result.ALLOW);
         }
     }
 }

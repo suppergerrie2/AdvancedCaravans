@@ -105,7 +105,7 @@ public class CaravanMod {
 
     @SubscribeEvent
     public void onCommonSetup(FMLCommonSetupEvent event) {
-        new ScheduleBuilder(CARAVAN_SCHEDULE.get()).changeActivityAt(0, LEAD_CARAVAN.get()).build();
+        new ScheduleBuilder(CARAVAN_SCHEDULE.get()).changeActivityAt(10, Activity.IDLE).changeActivityAt(1000, LEAD_CARAVAN.get()).changeActivityAt(11000, Activity.IDLE).changeActivityAt(12000, Activity.REST).build();
     }
 
 }
