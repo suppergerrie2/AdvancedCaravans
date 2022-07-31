@@ -64,10 +64,6 @@ public class VillageModifier {
         List<Pair<StructurePoolElement, Integer>> listOfPieceEntries = new ArrayList<>(pool.rawTemplates);
         listOfPieceEntries.add(new Pair<>(piece, weight));
         pool.rawTemplates = listOfPieceEntries;
-
-        for (Pair<StructurePoolElement, Integer> listOfPieceEntry : listOfPieceEntries) {
-            System.out.println(listOfPieceEntry.getFirst().toString() + " - " + listOfPieceEntry.getSecond());
-        }
     }
 
 
