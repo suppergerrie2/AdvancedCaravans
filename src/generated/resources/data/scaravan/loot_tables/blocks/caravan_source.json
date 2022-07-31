@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "scaravan:caravan_source",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "replace",
+                  "source": "CaravanLeaderId",
+                  "target": "BlockEntityTag.CaravanLeaderId"
+                }
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "scaravan:caravan_source"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

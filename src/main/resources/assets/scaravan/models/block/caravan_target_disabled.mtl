@@ -1,0 +1,8 @@
+# Made in Blockbench 4.3.1
+newmtl m_0
+map_Kd #body 
+newmtl m_2
+map_Kd #top 
+newmtl m_3
+map_Kd #flag 
+newmtl none

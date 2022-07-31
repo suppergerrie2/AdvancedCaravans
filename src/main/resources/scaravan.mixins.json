@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.suppergerrie2.caravan.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "scaravan.refmap.json",
+  "mixins": [
+    "MobMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

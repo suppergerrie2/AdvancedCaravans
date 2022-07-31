@@ -1,0 +1,6 @@
+{
+  "block.scaravan.caravan_dest": "Caravan Destination Block",
+  "block.scaravan.caravan_source": "Caravan Source Block",
+  "entity.scaravan.caravan_leader": "Caravan Leader",
+  "item.scaravan.debug_item": "Debug Item. Why do you have this!?"
+}

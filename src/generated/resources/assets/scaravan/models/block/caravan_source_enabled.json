@@ -1,0 +1,10 @@
+{
+  "flip_v": true,
+  "loader": "forge:obj",
+  "model": "scaravan:models/block/caravan_target_enabled.obj",
+  "textures": {
+    "body": "minecraft:block/oak_log",
+    "flag": "scaravan:block/flag_source",
+    "top": "minecraft:block/stripped_oak_log"
+  }
+}

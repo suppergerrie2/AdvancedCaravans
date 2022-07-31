@@ -1,0 +1,9 @@
+// 1.19.1	2022-07-30T19:05:03.3009495	Block States: scaravan
+fdf62452b874edda84fef2f356eac0735cb0ea37 assets/scaravan/blockstates/caravan_dest.json
+243297fae1296ed18b6076131aa96f957aa69ad8 assets/scaravan/blockstates/caravan_source.json
+6738a89fb966f6aa61e08a3f83cf81fb13d28c4e assets/scaravan/models/block/caravan_dest_bottom.json
+60155fc92cf76375be93f685d208c1b773aed3a7 assets/scaravan/models/block/caravan_dest_disabled.json
+ec1701a7b6309a5fd905602de1e43a99019d7322 assets/scaravan/models/block/caravan_dest_enabled.json
+7dc1853e7611ab54521e25da47e1c809815618ee assets/scaravan/models/block/caravan_source_bottom.json
+55640042cb45db3e4ba00d2132ceeaadf1b37788 assets/scaravan/models/block/caravan_source_disabled.json
+e43e74ba21be7940e15ce9ca5c20372b2427797f assets/scaravan/models/block/caravan_source_enabled.json
