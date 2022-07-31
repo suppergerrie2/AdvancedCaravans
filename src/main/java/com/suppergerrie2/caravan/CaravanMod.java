@@ -79,7 +79,7 @@ public class CaravanMod {
     public static final RegistryObject<SensorType<? extends Sensor<? super LivingEntity>>> DEST_SENSOR = SENSOR_TYPES.register("dest_sensor", () -> new SensorType<>(() -> new CaravanTargetSensor<>(CARAVAN_DEST_TARGET.get(), CaravanBlockAssignmentManager::getDest)));
 
     public static final RegistryObject<Item> DEBUG_ITEM = ITEMS.register("debug_item", () ->
-            new DebugItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+            new DebugItem(new Item.Properties()));
 
     public CaravanMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

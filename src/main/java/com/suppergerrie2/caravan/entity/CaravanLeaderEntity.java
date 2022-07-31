@@ -53,7 +53,6 @@ public class CaravanLeaderEntity extends AbstractVillager {
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final EntityDataAccessor<Optional<UUID>> DATA_CARAVAN_HEAD_LLAMA = SynchedEntityData.defineId(CaravanLeaderEntity.class, EntityDataSerializers.OPTIONAL_UUID);
 
-    // TODO: Find out which ones are actually needed since this is a copy from the villager
     private static final ImmutableList<MemoryModuleType<?>> MEMORY_TYPES = ImmutableList.of(
             CaravanMod.NEARBY_UNCLAIMED_LLAMA.get(),
             MemoryModuleType.NEAREST_LIVING_ENTITIES,

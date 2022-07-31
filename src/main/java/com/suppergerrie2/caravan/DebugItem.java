@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 import java.util.UUID;
 
-// TODO: Delete this class
 public class DebugItem extends Item {
 
     public DebugItem(Properties properties) {
