@@ -4,6 +4,7 @@
   "model": "scaravan:models/block/caravan_target_bottom.obj",
   "textures": {
     "body": "minecraft:block/oak_log",
-    "flag": "scaravan:block/flag_dest"
+    "flag": "scaravan:block/flag_dest",
+    "particle": "minecraft:block/oak_log"
   }
 }

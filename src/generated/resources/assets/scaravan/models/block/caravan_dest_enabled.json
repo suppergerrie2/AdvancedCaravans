@@ -5,6 +5,7 @@
   "textures": {
     "body": "minecraft:block/oak_log",
     "flag": "scaravan:block/flag_dest",
+    "particle": "minecraft:block/oak_log",
     "top": "minecraft:block/stripped_oak_log"
   }
 }

@@ -26,14 +26,16 @@ public class CaravanBlockStateProvider extends BlockStateProvider {
     void generateModelForTarget(Block b, String flag) {
         ResourceLocation blockName = ForgeRegistries.BLOCKS.getKey(b);
 
+        assert blockName != null;
         ModelFile enabledTopModel = models().getBuilder(blockName.getPath() + "_enabled")
                 .customLoader(ObjModelBuilder::begin)
                 .modelLocation(modLoc("models/block/caravan_target_enabled.obj"))
                 .flipV(true)
                 .end()
-            .texture("flag", modLoc("block/%s".formatted(flag)))
-            .texture("top", mcLoc("block/stripped_oak_log"))
-            .texture("body", mcLoc("block/oak_log"));
+                .texture("flag", modLoc("block/%s".formatted(flag)))
+                .texture("top", mcLoc("block/stripped_oak_log"))
+                .texture("body", mcLoc("block/oak_log"))
+                .texture("particle", mcLoc("block/oak_log"));
         ModelFile disabledTopModel = models().getBuilder(blockName.getPath() + "_disabled")
                 .customLoader(ObjModelBuilder::begin)
                 .modelLocation(modLoc("models/block/caravan_target_disabled.obj"))
@@ -41,16 +43,18 @@ public class CaravanBlockStateProvider extends BlockStateProvider {
                 .end()
                 .texture("flag", modLoc("block/%s".formatted(flag)))
                 .texture("top", mcLoc("block/stripped_oak_log"))
-                .texture("body", mcLoc("block/oak_log"));
+                .texture("body", mcLoc("block/oak_log"))
+                .texture("particle", mcLoc("block/oak_log"));
         ModelFile bottomModel = models().getBuilder(blockName.getPath() + "_bottom")
                 .customLoader(ObjModelBuilder::begin)
                 .modelLocation(modLoc("models/block/caravan_target_bottom.obj"))
                 .flipV(true)
                 .end()
                 .texture("flag", modLoc("block/%s".formatted(flag)))
-                .texture("body", mcLoc("block/oak_log"));
+                .texture("body", mcLoc("block/oak_log"))
+                .texture("particle", mcLoc("block/oak_log"));
         horizontalBlock(b, blockState -> {
-            if(blockState.getValue(CaravanTargetBlock.HALF) == DoubleBlockHalf.UPPER) {
+            if (blockState.getValue(CaravanTargetBlock.HALF) == DoubleBlockHalf.UPPER) {
                 if (blockState.getValue(CaravanTargetBlock.ENABLED)) {
                     return enabledTopModel;
                 } else {
