@@ -10,6 +10,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -22,7 +24,7 @@ import java.util.UUID;
 public class CaravanTargetBlockEntity extends BlockEntity {
 
 
-     UUID caravanLeaderId;
+    UUID caravanLeaderId;
 
     private final BlockPos.MutableBlockPos lastPos = new BlockPos.MutableBlockPos();
     private final int range = 4;
@@ -53,10 +55,20 @@ public class CaravanTargetBlockEntity extends BlockEntity {
 
         // Every 10 ticks a new block is scanned for a handler
         if (level.getGameTime() % 10 == 0) {
-            ((ServerLevel) level).sendParticles(ParticleTypes.END_ROD, lastPos.getX() + 0.5, lastPos.getY() + 0.5, lastPos.getZ() + 0.5, 1, 0, 0, 0, 0);
             BlockEntity blockEntity = level.getBlockEntity(lastPos);
-            if (blockEntity != null)
-                saveHandler(blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY));
+            if (blockEntity != null && saveHandler(blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY))) {
+                VoxelShape shape = level.getBlockState(lastPos).getShape(level, lastPos);
+                AABB aabb = shape.bounds().move(lastPos);
+
+                ((ServerLevel) level).sendParticles(ParticleTypes.END_ROD, aabb.minX, aabb.minY, aabb.minZ, 1, 0, 0, 0, 0);
+                ((ServerLevel) level).sendParticles(ParticleTypes.END_ROD, aabb.minX, aabb.minY, aabb.maxZ, 1, 0, 0, 0, 0);
+                ((ServerLevel) level).sendParticles(ParticleTypes.END_ROD, aabb.minX, aabb.maxY, aabb.minZ, 1, 0, 0, 0, 0);
+                ((ServerLevel) level).sendParticles(ParticleTypes.END_ROD, aabb.minX, aabb.maxY, aabb.maxZ, 1, 0, 0, 0, 0);
+                ((ServerLevel) level).sendParticles(ParticleTypes.END_ROD, aabb.maxX, aabb.minY, aabb.minZ, 1, 0, 0, 0, 0);
+                ((ServerLevel) level).sendParticles(ParticleTypes.END_ROD, aabb.maxX, aabb.minY, aabb.maxZ, 1, 0, 0, 0, 0);
+                ((ServerLevel) level).sendParticles(ParticleTypes.END_ROD, aabb.maxX, aabb.maxY, aabb.minZ, 1, 0, 0, 0, 0);
+                ((ServerLevel) level).sendParticles(ParticleTypes.END_ROD, aabb.maxX, aabb.maxY, aabb.maxZ, 1, 0, 0, 0, 0);
+            }
 
             incrementSearchPos(pos);
         }
@@ -70,7 +82,7 @@ public class CaravanTargetBlockEntity extends BlockEntity {
         // Redstone can force the block to be enabled, allowing more complex logic to be used for loading the caravan
         boolean enabled = level.hasNeighborSignal(pos) || targetType.shouldBeEnabled(level, pos, state, this);
 
-        if(state.getValue(CaravanTargetBlock.ENABLED) != enabled) {
+        if (state.getValue(CaravanTargetBlock.ENABLED) != enabled) {
             level.setBlock(pos, state.setValue(CaravanTargetBlock.ENABLED, enabled), 3);
         }
     }
@@ -99,11 +111,12 @@ public class CaravanTargetBlockEntity extends BlockEntity {
         }).orElse(false);
     }
 
-    void saveHandler(LazyOptional<IItemHandler> itemHandler) {
-        if (!itemHandler.isPresent()) return;
+    boolean saveHandler(LazyOptional<IItemHandler> itemHandler) {
+        if (!itemHandler.isPresent()) return false;
 
         handlersInRange.add(itemHandler);
         itemHandler.addListener(handlersInRange::remove);
+        return true;
     }
 
     void incrementSearchPos(BlockPos blockEntityPos) {
