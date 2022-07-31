@@ -46,7 +46,6 @@ import java.util.UUID;
 
 public class CaravanLeaderEntity extends AbstractVillager {
 
-
     private static final byte ACQUIRED_CARAVAN_EVENT = 96;
     private static final byte LOST_CARAVAN_EVENT = 97;
     private static final String CARAVAN_HEAD_NBT_KEY = "CaravanHeadLlama";
@@ -132,6 +131,15 @@ public class CaravanLeaderEntity extends AbstractVillager {
     }
 
     @Override
+    public void tick() {
+        super.tick();
+
+        if (this.getUnhappyCounter() > 0) {
+            this.setUnhappyCounter(this.getUnhappyCounter() - 1);
+        }
+    }
+
+    @Override
     protected void customServerAiStep() {
         this.getBrain().tick((ServerLevel) level, this);
 
@@ -211,10 +219,13 @@ public class CaravanLeaderEntity extends AbstractVillager {
                 this.setTradingPlayer(player);
                 this.openTradingScreen(player, this.getDisplayName(), 1);
             } else {
+                if (this.getOffers().isEmpty()) setUnhappy();
                 playSound(SoundEvents.VILLAGER_NO);
             }
 
             return InteractionResult.sidedSuccess(this.level.isClientSide);
+        } else {
+            setUnhappy();
         }
 
         return super.mobInteract(player, hand);
@@ -258,6 +269,13 @@ public class CaravanLeaderEntity extends AbstractVillager {
         this.brain.setMemory(MemoryModuleType.LAST_SLEPT, this.level.getGameTime());
         this.brain.eraseMemory(MemoryModuleType.WALK_TARGET);
         this.brain.eraseMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
+    }
+
+    private void setUnhappy() {
+        this.setUnhappyCounter(40);
+        if (!this.level.isClientSide()) {
+            this.playSound(SoundEvents.VILLAGER_NO, this.getSoundVolume(), this.getVoicePitch());
+        }
     }
 
     @Override

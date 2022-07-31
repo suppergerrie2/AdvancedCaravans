@@ -16,7 +16,7 @@ public class CaravanLeaderRenderer extends MobRenderer<CaravanLeaderEntity, Vill
     public CaravanLeaderRenderer(EntityRendererProvider.Context context) {
         super(context, new CaravanLeaderModel(context.bakeLayer(ModelLayers.VILLAGER)), 0.5F);
         this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getItemInHandRenderer()));
-//        this.addLayer(new VillagerProfessionLayer<>(this, context.getResourceManager(), "villager")); TODO: This only works for villagers, not for CaravanLeaders
+        this.addLayer(new CaravanLeaderProfessionLayer(this, context.getResourceManager(), "villager")); // TODO: This only works for villagers, not for CaravanLeaders
         this.addLayer(new CrossedArmsItemLayer<>(this, context.getItemInHandRenderer()));
     }
 
