@@ -1,0 +1,47 @@
+{
+  "name": "scaravan:village/common/llama",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 41,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "scaravan:village/common/llama_1",
+        "processors": "zombie_plains"
+      }
+    }, {
+      "weight": 41,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "scaravan:village/common/llama_2",
+        "processors": "zombie_plains"
+      }
+    }, {
+      "weight": 41,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "scaravan:village/common/llama_3",
+        "processors": "zombie_plains"
+      }
+    }, {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "scaravan:village/common/llama_4",
+        "processors": "zombie_plains"
+      }
+    }, {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "scaravan:village/common/llama_5",
+        "processors": "zombie_plains"
+      }
+    }
+  ]
+}

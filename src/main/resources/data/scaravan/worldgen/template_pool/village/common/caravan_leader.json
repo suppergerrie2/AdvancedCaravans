@@ -1,0 +1,15 @@
+{
+  "name": "scaravan:village/common/caravan_leader",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "scaravan:village/common/caravan_leader",
+        "processors": "zombie_plains"
+      }
+    }
+  ]
+}

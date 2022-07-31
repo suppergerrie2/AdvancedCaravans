@@ -6,6 +6,7 @@ import com.suppergerrie2.caravan.blocks.CaravanTargetBlockEntity;
 import com.suppergerrie2.caravan.entity.CaravanLeaderEntity;
 import com.suppergerrie2.caravan.entity.ai.sensors.CaravanTargetSensor;
 import com.suppergerrie2.caravan.entity.ai.sensors.LlamaSearcherSensor;
+import com.suppergerrie2.caravan.worldgen.VillageModifier;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -94,6 +95,7 @@ public class CaravanMod {
 
         modEventBus.register(this);
         MinecraftForge.EVENT_BUS.register(new Events());
+        VillageModifier.init();
     }
 
     @SubscribeEvent
