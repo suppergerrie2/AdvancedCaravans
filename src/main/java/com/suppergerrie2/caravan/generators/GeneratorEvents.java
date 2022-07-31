@@ -14,6 +14,7 @@ public class GeneratorEvents {
         event.getGenerator().addProvider(event.includeClient(), new CaravanItemModelProvider(event.getGenerator(), event.getExistingFileHelper()));
         event.getGenerator().addProvider(event.includeClient(), new CaravanBlockStateProvider(event.getGenerator(), event.getExistingFileHelper()));
         event.getGenerator().addProvider(event.includeServer(), new CaravanLootTableProvider(event.getGenerator()));
+        event.getGenerator().addProvider(event.includeServer(), new CaravanBlockTagsProvider(event.getGenerator(), CaravanMod.MODID, event.getExistingFileHelper()));
     }
 
 }

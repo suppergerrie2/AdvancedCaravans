@@ -52,7 +52,7 @@ public class CaravanTargetBlock extends HorizontalDirectionalBlock implements En
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public CaravanTargetBlock(CaravanBlockAssignmentManager.CaravanBlockAddTarget onPlaced, CaravanBlockAssignmentManager.CaravanBlockRemoveTarget onRemoved, CaravanBlockAssignmentManager.CaravanBlockGetTarget onGet) {
-        super(Properties.of(Material.WOOD));
+        super(Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD));
         this.onPlaced = onPlaced;
         this.onRemoved = onRemoved;
         this.onGet = onGet;
