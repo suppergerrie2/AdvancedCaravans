@@ -83,20 +83,20 @@ public class VillageModifier {
                 new ResourceLocation("minecraft:village/plains/houses"),
                 "scaravan:village/plains/houses/caravan_house_1", 8);
 
-//        addBuildingToPool(templatePoolRegistry, processorListRegistry,
-//                new ResourceLocation("minecraft:village/snowy/houses"),
-//                "scaravan:village/snowy/houses/caravan_house_1", 5);
-//
-//        addBuildingToPool(templatePoolRegistry, processorListRegistry,
-//                new ResourceLocation("minecraft:village/savanna/houses"),
-//                "scaravan:village/savanna/houses/caravan_house_1", 5);
-//
-//        addBuildingToPool(templatePoolRegistry, processorListRegistry,
-//                new ResourceLocation("minecraft:village/taiga/houses"),
-//                "scaravan:village/taiga/houses/caravan_house_1", 5);
-//
-//        addBuildingToPool(templatePoolRegistry, processorListRegistry,
-//                new ResourceLocation("minecraft:village/desert/houses"),
-//                "scaravan:village/desert/houses/caravan_house_1", 5);
+        addBuildingToPool(templatePoolRegistry, processorListRegistry,
+                new ResourceLocation("minecraft:village/snowy/houses"),
+                "scaravan:village/snowy/houses/caravan_house_1", 8);
+
+        addBuildingToPool(templatePoolRegistry, processorListRegistry,
+                new ResourceLocation("minecraft:village/savanna/houses"),
+                "scaravan:village/savanna/houses/caravan_house_1", 8);
+
+        addBuildingToPool(templatePoolRegistry, processorListRegistry,
+                new ResourceLocation("minecraft:village/taiga/houses"),
+                "scaravan:village/taiga/houses/caravan_house_1", 12);
+
+        addBuildingToPool(templatePoolRegistry, processorListRegistry,
+                new ResourceLocation("minecraft:village/desert/houses"),
+                "scaravan:village/desert/houses/caravan_house_1", 12);
     }
 }
